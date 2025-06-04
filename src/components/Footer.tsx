@@ -144,7 +144,7 @@ const Footer = () => {
             <div className="flex items-center space-x-2">
               <span className="text-2xl">🐓</span>
               <p className="text-blue-400 text-sm">
-                © 2024 Music School on the Farm. Made with ❤️ for all our musical families!
+                © {new Date().getFullYear()} Music School on the Farm. Made with ❤️ for all our musical families!
               </p>
             </div>
             <div className="flex items-center space-x-4">
