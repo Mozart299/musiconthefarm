@@ -50,7 +50,7 @@ const HomePage = () => {
                     🚀 Start the Adventure! <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-orange-600 text-lg px-8 py-4 rounded-full border-2">
+                <Button size="lg" variant="outline" className="border-white text-orange-600 hover:bg-white text-lg px-8 py-4 rounded-full border-2">
                   <Link href="/about">📖 Our Story</Link>
                 </Button>
               </div>
