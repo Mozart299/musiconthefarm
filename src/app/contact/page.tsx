@@ -125,7 +125,7 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h3 className="font-bold text-purple-900 mb-2 text-xl">Send Us an Email!</h3>
-                          <p className="text-gray-700 text-lg">📧 nsentongo@gmail.com</p>
+                          <p className="text-gray-700 text-lg">📧 info@musiconthefarm.com</p>
                         </div>
                       </div>
                     </CardContent>
@@ -327,7 +327,7 @@ const ContactPage = () => {
                       </div>
                       <div className="flex items-center justify-center space-x-3">
                         <span className="text-xl">✉️</span>
-                        <span className="text-gray-700 font-medium">nsentongo@gmail.com</span>
+                        <span className="text-gray-700 font-medium">info@musiconthefarm.com</span>
                       </div>
                     </div>
                     <div className="mt-6">
