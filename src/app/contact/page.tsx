@@ -43,8 +43,7 @@ const ContactPage = () => {
   }
 
   return (
-    <div className="min-h-screen py-20">
-      {/* Hero Section */}
+    <div className="min-h-screen ">
       <section className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -60,12 +59,9 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Contact Information & Form */}
       <section className="py-20 bg-green-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            
-            {/* Contact Information */}
             <motion.div 
               {...fadeInUp}
               className="space-y-8"
@@ -158,7 +154,6 @@ const ContactPage = () => {
               </motion.div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div 
               {...fadeInUp}
               className="lg:pl-8"
@@ -273,7 +268,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Visit Us Section */}
       <section className="py-20 bg-orange-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -349,7 +343,6 @@ const ContactPage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>

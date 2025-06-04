@@ -120,8 +120,7 @@ const InstrumentsPage = () => {
   }
 
   return (
-    <div className="min-h-screen py-20">
-      {/* Hero Section */}
+    <div className="min-h-screen">
       <section className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -137,7 +136,6 @@ const InstrumentsPage = () => {
         </div>
       </section>
 
-      {/* Western Instruments Section */}
       <section className="py-20 bg-green-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -187,7 +185,6 @@ const InstrumentsPage = () => {
         </div>
       </section>
 
-      {/* Traditional Instruments Section */}
       <section className="py-20 bg-gradient-to-b from-orange-100 to-yellow-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -258,7 +255,6 @@ const InstrumentsPage = () => {
         </div>
       </section>
 
-      {/* Learning Approach Section */}
       <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -324,7 +320,6 @@ const InstrumentsPage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-20 bg-yellow-400">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>

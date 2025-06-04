@@ -20,8 +20,7 @@ const AboutPage = () => {
   }
 
   return (
-    <div className="min-h-screen py-20">
-      {/* Hero Section */}
+    <div className="min-h-screen ">
       <section className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -37,7 +36,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Mission & Vision */}
       <section className="py-20 bg-green-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -82,7 +80,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Goals Section */}
       <section className="py-20 bg-yellow-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -190,7 +187,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Founder Section */}
       <section className="py-20 bg-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -236,7 +232,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-purple-500 to-pink-500 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div {...fadeInUp}>
