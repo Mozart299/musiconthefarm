@@ -28,8 +28,8 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">Music School</div>
-                <div className="text-lg font-bold text-yellow-400">ON THE FARM</div>
+                <div className="text-2xl font-bold text-white">Kitty Music &</div>
+                <div className="text-lg font-bold text-yellow-400">ARTS SCHOOL</div>
               </div>
             </div>
             <p className="text-blue-200 mb-6 max-w-md text-lg leading-relaxed">
