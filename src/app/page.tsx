@@ -157,17 +157,6 @@ const HomePage = () => {
             viewport={{ once: true }}
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
-            <motion.div variants={fadeInUp}>
-              <Card className="bg-white border-4 border-blue-200 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="text-4xl mb-2">🎵</div>
-                  <div className="text-3xl font-bold text-blue-900">1300</div>
-                  <div className="text-blue-700 font-medium">
-                    Happy Students
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
 
             <motion.div variants={fadeInUp}>
               <Card className="bg-white border-4 border-green-200 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
@@ -186,18 +175,6 @@ const HomePage = () => {
                   <div className="text-3xl font-bold text-orange-900">1:3</div>
                   <div className="text-orange-700 font-medium">
                     Free to Paid
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeInUp}>
-              <Card className="bg-white border-4 border-purple-200 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="text-4xl mb-2">🚜</div>
-                  <div className="text-3xl font-bold text-purple-900">1.5</div>
-                  <div className="text-purple-700 font-medium">
-                    Acres of Fun
                   </div>
                 </CardContent>
               </Card>
