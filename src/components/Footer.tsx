@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { Music, Mail, Phone, MapPin, Facebook, Instagram, Twitter } from "lucide-react"
 
 const Footer = () => {
@@ -17,8 +18,14 @@ const Footer = () => {
           
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-16 h-16 bg-yellow-400 rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-                <span className="text-3xl">🐓</span>
+              <div className="w-16 h-16 rounded-full overflow-hidden shadow-lg border-4 border-white bg-white">
+                <Image
+                  src="/logo.jpeg"
+                  alt="Music School on the Farm Logo"
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <div className="text-2xl font-bold text-white">Music School</div>
@@ -142,7 +149,15 @@ const Footer = () => {
         <div className="border-t border-blue-600 pt-8 text-center">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2">
-              <span className="text-2xl">🐓</span>
+              <div className="w-8 h-8 rounded-full overflow-hidden">
+                <Image
+                  src="/logo.png"
+                  alt="Music School on the Farm Logo"
+                  width={32}
+                  height={32}
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <p className="text-blue-400 text-sm">
                 © {new Date().getFullYear()} Music School on the Farm. Made with ❤️ for all our musical families!
               </p>
