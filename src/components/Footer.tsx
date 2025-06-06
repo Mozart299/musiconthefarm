@@ -159,7 +159,7 @@ const Footer = () => {
                 />
               </div>
               <p className="text-blue-400 text-sm">
-                © {new Date().getFullYear()} Music School on the Farm. Made with ❤️ for all our musical families!
+                © {new Date().getFullYear()} Kitty Music & Arts School. Made with ❤️ for all our musical families!
               </p>
             </div>
             <div className="flex items-center space-x-4">
