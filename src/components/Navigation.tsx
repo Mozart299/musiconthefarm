@@ -12,6 +12,7 @@ const Navigation = () => {
     { href: "/", label: "🏠 Home" },
     { href: "/about", label: "📖 About Us" },
     { href: "/instruments", label: "🎸 Instruments" },
+    { href: "/studio-services", label: "🎤 Studio Services" },
     { href: "/contact", label: "📞 Contact" }
   ]
 
