@@ -144,7 +144,7 @@ const ContactPage = () => {
                           <p className="text-gray-700">
                             ☀️ Day Classes: 9:00 AM - 5:00 PM<br />
                             🌙 Evening Classes: 6:00 PM - 8:00 PM<br />
-                            🎉 Weekend Classes: 9:00 AM - 4:00 PM
+                            🎉 Weekend Classes: 9:00 AM - 7:00 PM
                           </p>
                         </div>
                       </div>
@@ -277,7 +277,7 @@ const ContactPage = () => {
             <div className="text-6xl mb-4">🚜</div>
             <h2 className="text-4xl font-bold text-orange-900 mb-6">Come Visit Our Amazing Farm!</h2>
             <p className="text-xl text-orange-700 max-w-3xl mx-auto">
-              🌟 We'd love to show you around our 1.5-acre musical paradise! Come see where the magic happens! ✨
+              🌟 We'd love to show you around our musical paradise! Come see where the magic happens! ✨
             </p>
           </motion.div>
 
@@ -357,7 +357,7 @@ const ContactPage = () => {
               <Button className="bg-yellow-400 text-purple-900 hover:bg-yellow-300 text-lg px-8 py-4 rounded-full font-bold shadow-lg transform hover:scale-105 transition-all">
                 📞 Call Us Now!
               </Button>
-              <Button variant="outline" className="border-4 border-white text-white hover:bg-white hover:text-purple-900 text-lg px-8 py-4 rounded-full font-bold">
+              <Button variant="outline" className="border-4 border-white hover:bg-white text-purple-900 text-lg px-8 py-4 rounded-full font-bold">
                 🏠 Visit Our Farm!
               </Button>
             </div>

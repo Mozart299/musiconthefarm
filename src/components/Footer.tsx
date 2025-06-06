@@ -119,7 +119,7 @@ const Footer = () => {
                   <p className="text-blue-200 text-sm font-medium">Farm Hours:</p>
                   <p className="text-white text-sm">☀️ Days: 9AM - 5PM</p>
                   <p className="text-white text-sm">🌙 Evenings: 6PM - 8PM</p>
-                  <p className="text-white text-sm">🎉 Weekends: 9AM - 4PM</p>
+                  <p className="text-white text-sm">🎉 Weekends: 9AM - 7PM</p>
                 </div>
               </div>
             </div>
