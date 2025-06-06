@@ -155,22 +155,21 @@ const HomePage = () => {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto"
           >
-
             <motion.div variants={fadeInUp}>
               <Card className="bg-white border-4 border-green-200 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
-                <CardContent className="p-6">
+                <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-2">📚</div>
                   <div className="text-3xl font-bold text-green-900">3000</div>
-                  <div className="text-green-700 font-medium">Music Books</div>
+                  <div className="text-green-700 font-medium">Books</div>
                 </CardContent>
               </Card>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
               <Card className="bg-white border-4 border-orange-200 shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
-                <CardContent className="p-6">
+                <CardContent className="p-6 text-center">
                   <div className="text-4xl mb-2">🎯</div>
                   <div className="text-3xl font-bold text-orange-900">1:3</div>
                   <div className="text-orange-700 font-medium">
