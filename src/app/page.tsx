@@ -19,6 +19,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const HomePage = () => {
@@ -86,17 +87,51 @@ const HomePage = () => {
               className="flex justify-center"
             >
               <div className="relative">
-                <div className="w-80 h-80 bg-white rounded-full flex items-center justify-center animate-bounce shadow-2xl border-8 border-blue-600">
-                  <div className="w-60 h-60 bg-yellow-400 rounded-full flex items-center justify-center relative">
-                    <span className="text-8xl">🐓</span>
-                    <div className="absolute -top-8 -right-8 w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center animate-pulse">
+                <motion.div 
+                  className="w-80 h-80 bg-white rounded-full flex items-center justify-center shadow-2xl border-8 border-blue-600"
+                  animate={{ y: [-10, 10, -10] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <div className="w-60 h-60 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full flex items-center justify-center relative p-4">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white border-4 border-blue-200 shadow-inner">
+                      <Image
+                        src="/logo.jpeg"
+                        alt="Kitty Music & Arts School Logo"
+                        width={240}
+                        height={240}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <motion.div 
+                      className="absolute -top-8 -right-8 w-16 h-16 bg-orange-400 rounded-full flex items-center justify-center border-4 border-white shadow-lg"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    >
                       <span className="text-2xl">🎵</span>
-                    </div>
-                    <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center animate-pulse">
+                    </motion.div>
+                    <motion.div 
+                      className="absolute -bottom-8 -left-8 w-16 h-16 bg-green-400 rounded-full flex items-center justify-center border-4 border-white shadow-lg"
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    >
                       <span className="text-2xl">🎸</span>
-                    </div>
+                    </motion.div>
+                    <motion.div 
+                      className="absolute -top-8 -left-8 w-12 h-12 bg-purple-400 rounded-full flex items-center justify-center border-4 border-white shadow-lg"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <span className="text-lg">🎤</span>
+                    </motion.div>
+                    <motion.div 
+                      className="absolute -bottom-8 -right-8 w-12 h-12 bg-pink-400 rounded-full flex items-center justify-center border-4 border-white shadow-lg"
+                      animate={{ scale: [1.2, 1, 1.2] }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    >
+                      <span className="text-lg">🎨</span>
+                    </motion.div>
                   </div>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
