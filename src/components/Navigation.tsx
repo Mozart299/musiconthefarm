@@ -32,7 +32,7 @@ const Navigation = () => {
               />
             </div>
             <div>
-              <div className="text-xl font-bold text-blue-900">Kitty Music &</div>
+              <div className="text-xl font-bold text-blue-900">Kitty Town Music &</div>
               <div className="text-sm font-bold text-orange-600">ARTS SCHOOL</div>
             </div>
           </Link>

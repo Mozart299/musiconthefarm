@@ -53,7 +53,7 @@ const HomePage = () => {
                 🌟 Welcome to Our Farm! 🌟
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                Kitty Music &
+                Kitty Town Music &
                 <span className="block text-blue-900">Arts School</span>
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-white/90">
@@ -96,7 +96,7 @@ const HomePage = () => {
                     <div className="w-full h-full rounded-full overflow-hidden bg-white border-4 border-blue-200 shadow-inner">
                       <Image
                         src="/logo.jpeg"
-                        alt="Kitty Music & Arts School Logo"
+                        alt="Kitty Town Music & Arts School Logo"
                         width={240}
                         height={240}
                         className="w-full h-full object-contain"

@@ -28,7 +28,7 @@ const Footer = () => {
                 />
               </div>
               <div>
-                <div className="text-2xl font-bold text-white">Kitty Music &</div>
+                <div className="text-2xl font-bold text-white">Kitty Town Music &</div>
                 <div className="text-lg font-bold text-yellow-400">ARTS SCHOOL</div>
               </div>
             </div>
@@ -159,7 +159,7 @@ const Footer = () => {
                 />
               </div>
               <p className="text-blue-400 text-sm">
-                © {new Date().getFullYear()} Kitty Music & Arts School. Made with ❤️ for all our musical families!
+                © {new Date().getFullYear()} Kitty Town Music & Arts School. Made with ❤️ for all our musical families!
               </p>
             </div>
             <div className="flex items-center space-x-4">

@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'KAMS - Kitty Music & Arts School',
+  title: 'KAMS - Kitty Town Music & Arts School',
   description: 'Empowering students from diverse backgrounds to express themselves creatively and preserve their cultures through music, song, dance, and visual arts.',
 }
 
