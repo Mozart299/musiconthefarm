@@ -13,11 +13,11 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create transporter for Zoho Mail (Updated per Nodemailer docs)
+    // Create transporter for Zoho Mail (Updated to match your settings)
     const transporter = nodemailer.createTransport({
-      host: 'smtp.zoho.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports like 587
+      host: 'smtppro.zoho.com', // Using the exact host from your screenshot
+      port: 465,
+      secure: true, // SSL as shown in your settings
       auth: {
         user: process.env.EMAIL_FROM,
         pass: process.env.EMAIL_PASSWORD,
