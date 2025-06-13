@@ -1,6 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: 'smtppro.zoho.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL_FROM,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+
+    pool: true,
+    maxConnections: 5,
+    maxMessages: 100,
+    rateDelta: 1000,
+    rateLimit: 5, 
+  })
+}
+
+
+let transporter: nodemailer.Transporter | null = null
+
+const getTransporter = () => {
+  if (!transporter) {
+    transporter = createTransporter()
+  }
+  return transporter
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, program, message } = await request.json()
@@ -12,21 +41,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-
-    const transporter = nodemailer.createTransport({
-      host: 'smtppro.zoho.com',
-      port: 465,
-      secure: true, 
-      auth: {
-        user: process.env.EMAIL_FROM,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-
-      pool: true,
-      maxConnections: 1, 
-      rateDelta: 20000, 
-      rateLimit: 3,
-    })
+    const emailTransporter = getTransporter()
 
     const schoolEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -104,8 +119,7 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-
-    const schoolEmailResult = await transporter.sendMail({
+    const schoolEmailResult = await emailTransporter.sendMail({
       from: `"Kitty Town Music School" <${process.env.EMAIL_FROM}>`,
       to: 'info@musiconthefarm.com',
       subject: `🎵 New Student Inquiry from ${name} - ${program || 'General'}`,
@@ -113,8 +127,7 @@ export async function POST(request: NextRequest) {
       replyTo: email,
     })
 
-
-    const userEmailResult = await transporter.sendMail({
+    const userEmailResult = await emailTransporter.sendMail({
       from: `"Kitty Town Music & Arts School" <${process.env.EMAIL_FROM}>`, 
       to: email,
       subject: '🎉 Welcome to Kitty Town Music & Arts School Family!',
@@ -161,7 +174,6 @@ export async function POST(request: NextRequest) {
         )
       }
     }
-    
 
     return NextResponse.json(
       { error: 'Failed to send email. Please try again or contact us directly at +256779227192.' },
