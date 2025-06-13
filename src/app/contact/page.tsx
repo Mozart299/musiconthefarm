@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react"
+import { MapPin, Phone, Mail, Clock, Send, MessageCircle, CheckCircle, AlertCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import { useState } from "react"
 
@@ -14,6 +14,10 @@ const ContactPage = () => {
     program: '',
     message: ''
   })
+  
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -29,13 +33,47 @@ const ContactPage = () => {
     }
   }
 
-  const handleSubmit = (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    alert('🎉 Thank you for wanting to join our farm family! We\'ll contact you super soon! 🚜💕')
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          program: '',
+          message: ''
+        })
+      } else {
+        setSubmitStatus('error')
+        setErrorMessage(data.error || 'Something went wrong. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setSubmitStatus('error')
+      setErrorMessage('Network error. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleChange = (e: { target: { name: any; value: any } }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -169,6 +207,44 @@ const ContactPage = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
+                  {submitStatus === 'success' && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="mb-6 p-6 bg-green-100 border-2 border-green-300 rounded-xl"
+                    >
+                      <div className="flex items-center justify-center mb-3">
+                        <CheckCircle className="h-8 w-8 text-green-600 mr-2" />
+                        <h3 className="text-green-800 font-bold text-lg">Message Sent Successfully! 🎉</h3>
+                      </div>
+                      <p className="text-green-800 text-center">
+                        Thank you for wanting to join our farm family! We'll contact you super soon! 🚜💕
+                      </p>
+                      <p className="text-green-700 text-center text-sm mt-2">
+                        Check your email for a confirmation message!
+                      </p>
+                    </motion.div>
+                  )}
+                  
+                  {submitStatus === 'error' && (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="mb-6 p-6 bg-red-100 border-2 border-red-300 rounded-xl"
+                    >
+                      <div className="flex items-center justify-center mb-3">
+                        <AlertCircle className="h-8 w-8 text-red-600 mr-2" />
+                        <h3 className="text-red-800 font-bold text-lg">Oops! Something went wrong</h3>
+                      </div>
+                      <p className="text-red-800 text-center mb-2">
+                        {errorMessage}
+                      </p>
+                      <p className="text-red-700 text-center text-sm">
+                        Please try again or call us directly at +256779227192
+                      </p>
+                    </motion.div>
+                  )}
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -182,7 +258,8 @@ const ContactPage = () => {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                           placeholder="What should we call you? 😊"
                         />
                       </div>
@@ -197,7 +274,8 @@ const ContactPage = () => {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                           placeholder="your.email@example.com"
                         />
                       </div>
@@ -214,7 +292,8 @@ const ContactPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                           placeholder="+256..."
                         />
                       </div>
@@ -227,7 +306,8 @@ const ContactPage = () => {
                           name="program"
                           value={formData.program}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          disabled={isSubmitting}
+                          className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                           <option value="">Pick your adventure! 🌟</option>
                           <option value="music">🎸 Music Lessons</option>
@@ -251,14 +331,28 @@ const ContactPage = () => {
                         rows={5}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder="Tell us about yourself! What would you like to learn? Any questions? We're all ears! 👂✨"
                       />
                     </div>
 
-                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all">
-                      <Send className="h-5 w-5 mr-2" />
-                      🚀 Send Our Message!
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 text-lg rounded-xl shadow-lg transform hover:scale-105 transition-all disabled:opacity-50 disabled:transform-none disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Sending Your Message...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5 mr-2" />
+                          🚀 Send Our Message!
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>
