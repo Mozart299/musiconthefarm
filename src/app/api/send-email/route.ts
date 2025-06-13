@@ -5,7 +5,6 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, program, message } = await request.json()
 
-    // Validate required fields
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: 'Name, email, and message are required' },
@@ -13,23 +12,22 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Create transporter for Zoho Mail (Updated to match your settings)
+
     const transporter = nodemailer.createTransport({
-      host: 'smtppro.zoho.com', // Using the exact host from your screenshot
+      host: 'smtppro.zoho.com',
       port: 465,
-      secure: true, // SSL as shown in your settings
+      secure: true, 
       auth: {
         user: process.env.EMAIL_FROM,
         pass: process.env.EMAIL_PASSWORD,
       },
-      // Additional options for better reliability
-      pool: true, // use pooled connection
-      maxConnections: 1, // limit concurrent connections
-      rateDelta: 20000, // limit to 3 messages per 20 seconds
+
+      pool: true,
+      maxConnections: 1, 
+      rateDelta: 20000, 
       rateLimit: 3,
     })
 
-    // Email to the school
     const schoolEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #1e40af; text-align: center;">🎵 New Contact Form Submission! 🎵</h2>
@@ -56,7 +54,6 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-    // Confirmation email to the user
     const userEmailHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); border-radius: 10px;">
@@ -107,24 +104,23 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-    // Send email to school
+
     const schoolEmailResult = await transporter.sendMail({
-      from: `"Kitty Town Music School" <${process.env.EMAIL_FROM}>`, // proper from format
+      from: `"Kitty Town Music School" <${process.env.EMAIL_FROM}>`,
       to: 'info@musiconthefarm.com',
       subject: `🎵 New Student Inquiry from ${name} - ${program || 'General'}`,
       html: schoolEmailHtml,
-      replyTo: email, // Allow school to reply directly to the student
+      replyTo: email,
     })
 
-    // Send confirmation email to user
+
     const userEmailResult = await transporter.sendMail({
-      from: `"Kitty Town Music & Arts School" <${process.env.EMAIL_FROM}>`, // proper from format
+      from: `"Kitty Town Music & Arts School" <${process.env.EMAIL_FROM}>`, 
       to: email,
       subject: '🎉 Welcome to Kitty Town Music & Arts School Family!',
       html: userEmailHtml,
     })
 
-    // Log success (remove in production or use proper logging)
     console.log('School email sent:', schoolEmailResult.messageId)
     console.log('User email sent:', userEmailResult.messageId)
 
@@ -136,9 +132,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error sending email:', error)
     
-    // More specific error handling based on Nodemailer error types
     if (error instanceof Error) {
-      // Authentication errors
       if (error.message.includes('Invalid login') || error.message.includes('Authentication failed')) {
         return NextResponse.json(
           { error: 'Email authentication failed. Please contact support.' },
@@ -146,23 +140,20 @@ export async function POST(request: NextRequest) {
         )
       }
       
-      // Network/connection errors
       if (error.message.includes('ECONNREFUSED') || error.message.includes('ETIMEDOUT')) {
         return NextResponse.json(
           { error: 'Unable to connect to email server. Please try again later.' },
           { status: 500 }
         )
       }
-      
-      // Rate limiting
+
       if (error.message.includes('rate limit') || error.message.includes('too many')) {
         return NextResponse.json(
           { error: 'Too many emails sent. Please wait a moment and try again.' },
           { status: 429 }
         )
       }
-      
-      // Invalid email format
+
       if (error.message.includes('Invalid mail') || error.message.includes('recipient')) {
         return NextResponse.json(
           { error: 'Invalid email address format. Please check and try again.' },
@@ -171,7 +162,7 @@ export async function POST(request: NextRequest) {
       }
     }
     
-    // Generic error for anything else
+
     return NextResponse.json(
       { error: 'Failed to send email. Please try again or contact us directly at +256779227192.' },
       { status: 500 }
